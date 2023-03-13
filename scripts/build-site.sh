@@ -20,8 +20,8 @@ export REL_CSS_BUNDLE="/css/styles.${ASSET_BUNDLE_ID}.css"
 export REL_JS_BUNDLE="/js/bundle.min.${ASSET_BUNDLE_ID}.js"
 export REPO_THEME_PATH="themes/default/"
 
-printf "Copying prebuilt docs...\n\n"
-make copy_static_prebuilt
+# printf "Copying prebuilt docs...\n\n"
+# make copy_static_prebuilt
 
 # REGISTRY_COMMIT="$(go mod graph | grep pulumi/registry/themes/default | sed 's/.*-//')"
 
@@ -31,15 +31,15 @@ make copy_static_prebuilt
 # resourcedocsgen docs registry --commitSha "${REGISTRY_COMMIT}" --logtostderr
 # popd
 
-printf "Running Hugo...\n\n"
-if [ "$1" == "preview" ]; then
-    export HUGO_BASEURL="http://$(origin_bucket_prefix)-$(build_identifier).s3-website.$(aws_region).amazonaws.com"
-    GOGC=3 hugo --minify --buildFuture --templateMetrics -e "preview"
-else
-    GOGC=3 hugo --minify --buildFuture --templateMetrics -e production
-fi
+# printf "Running Hugo...\n\n"
+# if [ "$1" == "preview" ]; then
+#     export HUGO_BASEURL="http://$(origin_bucket_prefix)-$(build_identifier).s3-website.$(aws_region).amazonaws.com"
+#     GOGC=3 hugo --minify --buildFuture --templateMetrics -e "preview"
+# else
+#     GOGC=3 hugo --minify --buildFuture --templateMetrics -e production
+# fi
 
-# Purge unused CSS.
-yarn run minify-css
+# # Purge unused CSS.
+# yarn run minify-css
 
-printf "Done!\n\n"
+# printf "Done!\n\n"
