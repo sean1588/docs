@@ -11,7 +11,7 @@ jobs:
     env:
       GOPATH: ${{ github.workspace }}/go
     name: Install deps and build site
-    runs-on: buildjet-4vcpu-ubuntu-2004
+    runs-on: ubuntu-latest
     steps:
 
       - uses: actions/checkout@v2
@@ -68,7 +68,7 @@ jobs:
       - name: Slack Notification
         uses: docker://sholung/action-slack-notify:v2.3.0
         env:
-          SLACK_CHANNEL: docs-ops
+          SLACK_CHANNEL: sean-ops-test
           SLACK_COLOR: "#F54242"
           SLACK_MESSAGE: "build and deploy failure in pulumi/docs repo :meow_sad:"
           SLACK_USERNAME: docsbot
