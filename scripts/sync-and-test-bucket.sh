@@ -44,7 +44,7 @@ node scripts/translate-redirects.js "$build_dir" "$(pulumi -C infrastructure con
 # which case we should simply proceed (to repopulate it), or the bucket was somehow
 # created in another account, in which case subsequent operations on the bucket will also
 # fail, causing this script to exit nonzero. In either case, it's okay to continue.
-aws s3 mb $destination_bucket_uri --region "$(aws_region)" || true
+aws s3 mb $destination_bucket_uri --region "$(aws_region)" 
 
 # Tag the bucket with ownership information for production buckets.
 if [ "$(pulumi -C infrastructure stack --show-name)" == "production" ]; then
