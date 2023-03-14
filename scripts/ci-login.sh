@@ -7,4 +7,4 @@
 
 # echo "Selecting the pulumi/production stack"
 pulumi login
-pulumi -C infrastructure stack select pulumi/www-staging
+pulumi -C infrastructure stack select "pulumi/www-staging"
