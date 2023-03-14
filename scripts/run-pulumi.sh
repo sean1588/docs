@@ -24,7 +24,7 @@ case ${PULUMI_ACTION} in
         # be for our checkpointed CloudFront Etag to fall out of sync with what's current,
         # we refresh the distribution on every update.
         pulumi stack select "pulumi/www-staging"
-        pulumi -C infrastructure refresh -t "urn:pulumi:production::www.pulumi.com::aws:cloudfront/distribution:Distribution::cdn" --yes
+        # pulumi -C infrastructure refresh -t "urn:pulumi:production::www.pulumi.com::aws:cloudfront/distribution:Distribution::cdn" --yes
 
         pulumi -C infrastructure preview
         ;;
