@@ -58,7 +58,7 @@ aws s3 website $destination_bucket_uri --index-document index.html --error-docum
 # here, since in most cases, we'll be continually updating a bucket associated with a PR;
 # passing this option keeps the destination bucket clean.
 echo "Synchronizing to $destination_bucket_uri..."
-aws s3 cp "s3://www-sean-test" "$destination_bucket_uri" --acl public-read --quiet --region "$(aws_region)"
+aws s3 cp "s3://www-sean-test/" "$destination_bucket_uri" --recursive --acl public-read --quiet --region "$(aws_region)"
 
 echo "Sync complete."
 s3_website_url="http://${destination_bucket}.s3-website.$(aws_region).amazonaws.com"
