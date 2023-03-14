@@ -31,15 +31,15 @@ make copy_static_prebuilt
 # resourcedocsgen docs registry --commitSha "${REGISTRY_COMMIT}" --logtostderr
 # popd
 
-printf "Running Hugo...\n\n"
-if [ "$1" == "preview" ]; then
-    export HUGO_BASEURL="http://$(origin_bucket_prefix)-$(build_identifier).s3-website.$(aws_region).amazonaws.com"
-    GOGC=3 hugo --minify --buildFuture --templateMetrics -e "preview"
-else
-    GOGC=3 hugo --minify --buildFuture --templateMetrics -e production
-fi
+# printf "Running Hugo...\n\n"
+# if [ "$1" == "preview" ]; then
+#     export HUGO_BASEURL="http://$(origin_bucket_prefix)-$(build_identifier).s3-website.$(aws_region).amazonaws.com"
+#     GOGC=3 hugo --minify --buildFuture --templateMetrics -e "preview"
+# else
+#     GOGC=3 hugo --minify --buildFuture --templateMetrics -e production
+# fi
 
-# # Purge unused CSS.
-yarn run minify-css
+# # # Purge unused CSS.
+# yarn run minify-css
 
 printf "Done!\n\n"

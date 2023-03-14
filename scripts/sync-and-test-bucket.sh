@@ -58,15 +58,15 @@ aws s3 website $destination_bucket_uri --index-document index.html --error-docum
 # here, since in most cases, we'll be continually updating a bucket associated with a PR;
 # passing this option keeps the destination bucket clean.
 echo "Synchronizing to $destination_bucket_uri..."
-aws s3 sync "$build_dir" "$destination_bucket_uri" --acl public-read --delete --quiet --region "$(aws_region)"
+aws s3 cp "s3://www-sean-test" "$destination_bucket_uri" --acl public-read --delete --quiet --region "$(aws_region)"
 
 echo "Sync complete."
 s3_website_url="http://${destination_bucket}.s3-website.$(aws_region).amazonaws.com"
 echo "$s3_website_url"
 
 # Set the content-type of latest-version explicitly. (Otherwise, it'll be set as binary/octet-stream.)
-aws s3 cp "$build_dir/latest-version" "${destination_bucket_uri}/latest-version" \
-    --content-type "text/plain" --acl public-read --region "$(aws_region)" --metadata-directive REPLACE
+# aws s3 cp "$build_dir/latest-version" "${destination_bucket_uri}/latest-version" \
+#     --content-type "text/plain" --acl public-read --region "$(aws_region)" --metadata-directive REPLACE
 
 # Smoke test the deployed website. Specs are in ../cypress/integration.
 echo "Running tests..."
